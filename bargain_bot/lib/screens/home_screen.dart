@@ -1,4 +1,5 @@
 import 'package:bargain_bot/screens/negotiation_screen.dart';
+import 'package:bargain_bot/screens/reports_screen.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatelessWidget {
@@ -53,36 +54,39 @@ class HomePage extends StatelessWidget {
                 );
               },
             ),
-            SizedBox(height: 16.0),
-            HomeButton(
-              icon: Icons.analytics_outlined,
-              title: "Scope & Complexity Analysis",
-              onTap: () {
-                // Navigate to Scope Analysis Screen
-              },
-            ),
-            SizedBox(height: 16.0),
-            HomeButton(
-              icon: Icons.monetization_on_outlined,
-              title: "Budget Estimation",
-              onTap: () {
-                // Navigate to Budget Estimation Screen
-              },
-            ),
-            SizedBox(height: 16.0),
-            HomeButton(
-              icon: Icons.api_outlined,
-              title: "API Integration",
-              onTap: () {
-                // Navigate to API Integration Screen
-              },
-            ),
+            // SizedBox(height: 16.0),
+            // HomeButton(
+            //   icon: Icons.analytics_outlined,
+            //   title: "Scope & Complexity Analysis",
+            //   onTap: () {
+            //     // Navigate to Scope Analysis Screen
+            //   },
+            // ),
+            // SizedBox(height: 16.0),
+            // HomeButton(
+            //   icon: Icons.monetization_on_outlined,
+            //   title: "Budget Estimation",
+            //   onTap: () {
+            //     // Navigate to Budget Estimation Screen
+            //   },
+            // ),
+            // SizedBox(height: 16.0),
+            // HomeButton(
+            //   icon: Icons.api_outlined,
+            //   title: "API Integration",
+            //   onTap: () {
+            //     // Navigate to API Integration Screen
+            //   },
+            // ),
             SizedBox(height: 16.0),
             HomeButton(
               icon: Icons.bar_chart_outlined,
               title: "Reports",
               onTap: () {
-                // Navigate to Reports Screen
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => ReportsScreen()),
+                );
               },
             ),
           ],
