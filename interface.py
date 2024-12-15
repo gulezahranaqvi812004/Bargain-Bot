@@ -120,7 +120,7 @@ def chatbot_with_ml():
         "Ask about project types (FR-1)",
         "Calculate complexity score (FR-2)",
         "Estimate budget with ML (FR-3)",
-        "Get a price suggestion (FR-4)",
+        # "Get a price suggestion (FR-4)",
         "Adjust price based on feedback (FR-5)"
     ))
 
@@ -149,15 +149,15 @@ def chatbot_with_ml():
             budget = forecast_budget_with_model(model, project_details)
             st.write(f"BargainBot: Estimated Budget is {budget}")
 
-    elif option == "Get a price suggestion (FR-4)":
-        complexity_score = st.number_input("Enter the complexity score:", min_value=0)
-        estimated_budget = st.number_input("Enter the estimated budget:", min_value=0.0)
+    # elif option == "Get a price suggestion (FR-4)":
+    #     complexity_score = st.number_input("Enter the complexity score:", min_value=0)
+    #     estimated_budget = st.number_input("Enter the estimated budget:", min_value=0.0)
 
-        if st.button("Suggest Price"):
-            weights = np.array([0.4, 0.6])
-            inputs = np.array([complexity_score, estimated_budget])
-            suggested_price = np.dot(weights, inputs)
-            st.write(f"BargainBot: Suggested Price is {suggested_price}")
+    #     if st.button("Suggest Price"):
+    #         weights = np.array([0.4, 0.6])
+    #         inputs = np.array([complexity_score, estimated_budget])
+    #         suggested_price = np.dot(weights, inputs)
+    #         st.write(f"BargainBot: Suggested Price is {suggested_price}")
 
     elif option == "Adjust price based on feedback (FR-5)":
         current_price = st.number_input("Enter the current price:", min_value=0.0)
