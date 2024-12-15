@@ -118,11 +118,11 @@ def chatbot_with_ml():
     st.write("Please choose an option from below:")
 
     option = st.selectbox("Select an option", (
-        "Ask about project types (FR-1)",
-        "Calculate complexity score (FR-2)",
-        "Estimate budget with ML (FR-3)",
+        "Ask about project types",
+        "Calculate complexity score",
+        "Estimate budget with ML",
         # "Get a price suggestion (FR-4)",
-        "Adjust price based on feedback (FR-5)"
+        "Adjust price based on feedback"
     ))
 
     # Handle each option
