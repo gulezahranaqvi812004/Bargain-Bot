@@ -118,20 +118,19 @@ def chatbot_with_ml():
     st.write("Please choose an option from below:")
 
     option = st.selectbox("Select an option", (
-        "Ask about project types",
-        "Calculate complexity score",
-        "Estimate budget with ML",
-        # "Get a price suggestion (FR-4)",
-        "Adjust price based on feedback"
-    ))
+    "Ask about project types",  # Removed "(FR-1)"
+    "Calculate complexity score",  # Removed "(FR-2)"
+    "Estimate budget with ML",  # Removed "(FR-3)"
+    "Adjust price based on feedback"  # Removed "(FR-5)"
+))
 
     # Handle each option
-    if option == "Ask about project types (FR-1)":
+    if option == "Ask about project types":
         query = st.text_input("Enter your project query:")
         if query:
             st.write("BargainBot: We can help with your query!")
 
-    elif option == "Calculate complexity score (FR-2)":
+    elif option == "Calculate complexity score":
         duration = st.number_input("Enter project duration (weeks):", min_value=1, max_value=52)
         resources = st.number_input("Enter resources required (count):", min_value=1, max_value=100)
         expertise = st.number_input("Enter expertise level (1-10):", min_value=1, max_value=10)
@@ -140,7 +139,7 @@ def chatbot_with_ml():
             complexity_score = (duration * 2) + (resources * 3) + (expertise * 5)
             st.write(f"BargainBot: Complexity Score is {complexity_score}")
 
-    elif option == "Estimate budget with ML (FR-3)":
+    elif option == "Estimate budget with ML":
         duration = st.number_input("Enter project duration (weeks):", min_value=1, max_value=52)
         resources = st.number_input("Enter resources required (count):", min_value=1, max_value=100)
         expertise = st.number_input("Enter expertise level (1-10):", min_value=1, max_value=10)
@@ -148,26 +147,17 @@ def chatbot_with_ml():
         project_details = {"duration": duration, "resources": resources, "expertise": expertise}
         if st.button("Estimate Budget"):
             budget = forecast_budget_with_model(model, project_details)
-            st.write(f"BargainBot: Estimated Budget is {budget}")
+            st.write(f"BargainBot: Estimated Budget is {round(budget,2)}")
 
-    # elif option == "Get a price suggestion (FR-4)":
-    #     complexity_score = st.number_input("Enter the complexity score:", min_value=0)
-    #     estimated_budget = st.number_input("Enter the estimated budget:", min_value=0.0)
-
-    #     if st.button("Suggest Price"):
-    #         weights = np.array([0.4, 0.6])
-    #         inputs = np.array([complexity_score, estimated_budget])
-    #         suggested_price = np.dot(weights, inputs)
-    #         st.write(f"BargainBot: Suggested Price is {suggested_price}")
-
-    elif option == "Adjust price based on feedback (FR-5)":
+    elif option == "Adjust price based on feedback":
         current_price = st.number_input("Enter the current price:", min_value=0.0)
         feedback = st.selectbox("Enter client feedback", ("positive", "negative", "neutral"))
 
         if st.button("Adjust Price"):
             adjustment = {'positive': 0.95, 'negative': 1.1, 'neutral': 1.0}
             adjusted_price = current_price * adjustment.get(feedback, 1.0)
-            st.write(f"BargainBot: Adjusted Price is {adjusted_price}")
+            st.write(f"BargainBot: Adjusted Price is {round(adjusted_price, 2)}")
+
 
 
 # Run the chatbot interface

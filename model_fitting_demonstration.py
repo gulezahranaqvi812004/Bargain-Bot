@@ -1,9 +1,10 @@
 import pandas as pd
 import numpy as np
-from sklearn.model_selection import train_test_split
-from sklearn.metrics import mean_squared_error
 import matplotlib.pyplot as plt
 from numpy.polynomial.polynomial import Polynomial
+from sklearn.model_selection import train_test_split
+from sklearn.metrics import mean_squared_error
+import streamlit as st
 
 # Generate historical data
 def generate_historical_data(num_samples):
@@ -67,7 +68,7 @@ def plot_with_polynomial_fit(y_test, predictions, title="Prediction vs Actual (P
     plt.title(title)
     plt.legend()
     plt.grid(True)
-    plt.show()
+    return plt
 
 # Train budget model
 def train_budget_model(historical_data):
@@ -83,29 +84,28 @@ def train_budget_model(historical_data):
     mse = mean_squared_error(y_test, predictions)
     rmse = np.sqrt(mse)
 
-    print(f"Custom Simple Linear Regression RMSE: {rmse}")
-    plot_with_polynomial_fit(y_test, predictions)
+    st.write(f"Custom Simple Linear Regression RMSE: {rmse}")
+    plt = plot_with_polynomial_fit(y_test, predictions)
+    st.pyplot(plt)
 
     return model
 
+# Streamlit Interface
 def chatbot_with_ml():
-    print("Welcome to the BargainBot Chatbot")
+    st.title("BargainBot Chatbot with Machine Learning")
 
-    while True:
-        print("\nOptions:")
-        print("1. Generate historical data and train model")
-        print("9. Exit")
+    menu = ["Generate Historical Data and Train Model", "Exit"]
+    choice = st.sidebar.selectbox("Choose an Option", menu)
 
-        option = input("Enter your choice: ")
-
-        if option == "1":
-            historical_data = generate_historical_data(num_samples=1000)
-            train_budget_model(historical_data)
-        elif option == "9":
-            print("Exiting... Goodbye!")
-            break
-        else:
-            print("Invalid choice. Please try again.")
+    if choice == "Generate Historical Data and Train Model":
+        st.subheader("Training Budget Model")
+        num_samples = st.slider("Number of Samples", min_value=100, max_value=5000, value=1000, step=100)
+        historical_data = generate_historical_data(num_samples=num_samples)
+        # st.write("Sample of Historical Data:")
+        # st.write(historical_data.head())
+        train_budget_model(historical_data)
+    elif choice == "Exit":
+        st.write("Exiting... Goodbye!")
 
 if __name__ == "__main__":
     chatbot_with_ml()
