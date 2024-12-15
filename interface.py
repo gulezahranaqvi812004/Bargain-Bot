@@ -106,14 +106,15 @@ def forecast_budget_with_model(model, project_details):
 
 # Main chatbot UI with Streamlit
 def chatbot_with_ml():
-    st.title("BargainBot Chatbot")
+    st.title("BargainBot")
+    st.subheader("Negotiate and get best price according to you!")
 
     # Generate historical data and train the model
     historical_data = generate_historical_data(num_samples=1000)
     model = train_budget_model(historical_data)
 
     # Input section
-    st.subheader("Welcome to BargainBot!")
+    st.subheader("Welcome!")
     st.write("Please choose an option from below:")
 
     option = st.selectbox("Select an option", (
